@@ -22,13 +22,13 @@ import java.util.List;
 
 import info.androidhive.sqlite.R;
 import info.androidhive.sqlite.database.DatabaseHelper;
-import info.androidhive.sqlite.database.model.Note;
+import info.androidhive.sqlite.database.model.VerbiendungDB;
 import info.androidhive.sqlite.utils.MyDividerItemDecoration;
 import info.androidhive.sqlite.utils.RecyclerTouchListener;
 
 public class MainActivity extends AppCompatActivity {
     private NotesAdapter mAdapter;
-    private List<Note> notesList = new ArrayList<>();
+    private List<VerbiendungDB> notesList = new ArrayList<>();
     private CoordinatorLayout coordinatorLayout;
     private RecyclerView recyclerView;
     private TextView noNotesView;
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         long id = db.insertNote(note);
 
         // get the newly inserted note from db
-        Note n = db.getNote(id);
+        VerbiendungDB n = db.getNote(id);
 
         if (n != null) {
             // adding new note to array list at 0 position
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
      * item in the list by its position
      */
     private void updateNote(String note, int position) {
-        Note n = notesList.get(position);
+        VerbiendungDB n = notesList.get(position);
         // updating note text
         n.setNote(note);
 
@@ -148,10 +148,10 @@ public class MainActivity extends AppCompatActivity {
      * Delete - 0
      */
     private void showActionsDialog(final int position) {
-        CharSequence colors[] = new CharSequence[]{"Edit", "Delete"};
+        CharSequence colors[] = new CharSequence[]{"Bearbeiten / Kommentar", "Löschen"};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Choose option");
+        builder.setTitle("Option wählen");
         builder.setItems(colors, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
      * when shouldUpdate=true, it automatically displays old note and changes the
      * button text to UPDATE
      */
-    private void showNoteDialog(final boolean shouldUpdate, final Note note, final int position) {
+    private void showNoteDialog(final boolean shouldUpdate, final VerbiendungDB note, final int position) {
         LayoutInflater layoutInflaterAndroid = LayoutInflater.from(getApplicationContext());
         View view = layoutInflaterAndroid.inflate(R.layout.note_dialog, null);
 

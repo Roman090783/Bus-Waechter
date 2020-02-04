@@ -7,7 +7,6 @@ package info.androidhive.sqlite.view;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,12 +18,12 @@ import java.util.Date;
 import java.util.List;
 
 import info.androidhive.sqlite.R;
-import info.androidhive.sqlite.database.model.Note;
+import info.androidhive.sqlite.database.model.VerbiendungDB;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder> {
 
     private Context context;
-    private List<Note> notesList;
+    private List<VerbiendungDB> notesList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView note;
@@ -40,7 +39,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
     }
 
 
-    public NotesAdapter(Context context, List<Note> notesList) {
+    public NotesAdapter(Context context, List<VerbiendungDB> notesList) {
         this.context = context;
         this.notesList = notesList;
     }
@@ -55,7 +54,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        Note note = notesList.get(position);
+        VerbiendungDB note = notesList.get(position);
 
         holder.note.setText(note.getNote());
 
@@ -72,16 +71,13 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
     }
 
     /**
-     * Formatting timestamp to `MMM d` format
-     * Input: 2018-02-21 00:15:42
-     * Output: Feb 21
+     * timestamp format
      */
     private String formatDate(String dateStr) {
         try {
             SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date date = fmt.parse(dateStr);
-            SimpleDateFormat fmtOut = new SimpleDateFormat("MMM d");
-            return fmtOut.format(date);
+            return fmt.format(date);
         } catch (ParseException e) {
 
         }
