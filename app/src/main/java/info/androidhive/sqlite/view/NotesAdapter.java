@@ -1,9 +1,5 @@
 package info.androidhive.sqlite.view;
 
-/**
- * Created by ravi on 20/02/18.
- */
-
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;

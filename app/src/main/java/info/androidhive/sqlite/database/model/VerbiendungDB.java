@@ -1,7 +1,7 @@
 package info.androidhive.sqlite.database.model;
 
 public class VerbiendungDB {
-    public static final String TABLE_NAME = "notes";
+    public static final String TABLE_NAME = "BUSVERBINDUNG";
 
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_NOTE = "note";
